@@ -42,9 +42,6 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
     
     Route::get('admin', 'AdminController@index');
-    Route::get('admin/shots', 'AdminController@indexShotS');
-    Route::get('admin/shots/create', 'AdminController@createShotGet');
-    Route::post('admin/shots/create', 'AdminController@createShotPost');
-    
-    Route::delete('/admin/shots/delete/{shot}', 'AdminController@deleteShot');
+    Route::post('admin/create', 'AdminController@create'); 
+    Route::delete('/admin/delete/{shot}', 'AdminController@delete');
 });

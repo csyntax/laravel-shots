@@ -6,28 +6,29 @@
         @foreach ($shots as $shot)  
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="/images/{{$shot -> image }}" class="img-responsive img-rounded" width="500"/> 
+                    <a href="" class="thumbnail" data-toggle="modal" data-target="#shot-{{$shot->id}}">
+                        <img src="/images/{{$shot -> image }}" class="img-responsive img-rounded" width="500"/>
+                    </a> 
                      <div class="caption">
-                        <h3> {{ $shot -> title }} </h3>
-                        
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#shot-{{$shot->id}}">
-                            View
-                        </button>
-
-<div class="modal fade" id="shot-{{$shot->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{$shot->title}}</h4>
-      </div>
-      <div class="modal-body">
-        <img src="/images/{{$shot -> image }}" class="img-responsive img-rounded" width="900"/> 
-      </div>
-    </div>
-  </div>
-</div>
+                        <h3> {{ $shot -> title }} by {{ $shot -> user -> name }}</h3>
+                        <time> {{ $shot->created_at->format('d M Y') }}</time>
                      </div>
+                </div>
+                
+                <div class="modal fade" id="shot-{{$shot->id}}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">{{$shot->title}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <img src="/images/{{$shot -> image }}" class="img-responsive img-rounded" width="900"/> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endforeach
