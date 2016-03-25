@@ -15,33 +15,40 @@
         
         <hr>
         
-        @foreach ($shots as $shot)
-            <img src="/images/{{$shot -> image }}" /> 
-            <p> {{ $shot -> title }} </p>
-            <form action="/admin/delete/{{ $shot -> id }}" method="POST">
-                {!! csrf_field() !!}
-                {!! method_field('DELETE') !!}
+        <div class="row">
         
-                <button type="submit" class="btn btn-primary">Delete</button>
-            </form>
+        @foreach ($shots as $shot)
+        	<div class="col-md-4">
+	        	<a href="#" class="thumbnail" data-toggle="modal" data-target="#shot-{{ $shot->id }}">
+	            	<img src="/images/{{$shot -> image }}" />
+	            </a>
             
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shot-{{ $shot->id }}">View</button>
+            	<p> {{ $shot -> title }} </p>
             
-            <div class="modal fade" id="shot-{{ $shot->id }}" tabindex="-1" role="dialog" aria-labelledby="{{$shot->title}}">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="{{$shot->title}}">{{$shot->title}}</h4>
-                        </div>
-                        <div class="modal-body">
-                            <img src="/images/{{ $shot -> image }}">
-                        </div>
-                    </div>
-                </div>
+	            <form action="/admin/delete/{{ $shot -> id }}" method="POST">
+	                {!! csrf_field() !!}
+	                {!! method_field('DELETE') !!}
+	        
+	                <button type="submit" class="btn btn-primary">Delete</button>
+	            </form>
+	            
+	            <div class="modal fade" id="shot-{{ $shot->id }}" tabindex="-1" role="dialog" aria-labelledby="{{$shot->title}}">
+	                <div class="modal-dialog" role="document">
+	                    <div class="modal-content">
+	                        <div class="modal-header">
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                                <span aria-hidden="true">&times;</span>
+	                            </button>
+	                            <h4 class="modal-title" id="{{$shot->title}}">{{$shot->title}}</h4>
+	                        </div>
+	                        <div class="modal-body">
+	                            <img src="/images/{{ $shot -> image }}">
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
             </div>
         @endforeach
+        </div>
     </div>
 @endsection

@@ -6,7 +6,7 @@
         @foreach ($shots as $shot)  
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <a href="" class="thumbnail" data-toggle="modal" data-target="#shot-{{$shot->id}}">
+                    <a href="#" class="thumbnail" data-toggle="modal" data-target="#shot-{{$shot->id}}">
                         <img src="/images/{{$shot -> image }}" class="img-responsive img-rounded" width="500"/>
                     </a> 
                      <div class="caption">

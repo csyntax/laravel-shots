@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Shot;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use App\Shot;
 
 class AdminController extends Controller
 {
@@ -22,12 +21,12 @@ class AdminController extends Controller
             'shots' => $shots
         ]);
     }
-        
+
     public function create(Request $request) 
     {
-         $image = $request -> file("image");
-         $filename  = time() . '.' . $image -> getClientOriginalExtension();
-         $path = public_path('images/' . $filename);
+        $image = $request -> file("image");
+        $filename  = time() . '.' . $image -> getClientOriginalExtension();
+        $path = public_path('images/' . $filename);
              
         Image::make($image -> getRealPath()) -> resize(200, 200) -> save($path);
     
